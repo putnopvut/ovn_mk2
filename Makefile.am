@@ -12,6 +12,7 @@ SUBDIRS = ovs
 OVS_SRCDIR=@ovs_srcdir@
 OVS_LIBDIR=@ovs_libdir@
 OVSDB_LIBDIR=@ovsdb_libdir@
+OVS_MANDIR=@ovs_mandir@
 
 AM_CPPFLAGS = $(SSL_CFLAGS)
 AM_LDFLAGS = $(SSL_LDFLAGS)
@@ -190,6 +191,7 @@ SUFFIXES += .xml
 %: %.xml
 	$(AM_V_GEN)$(run_python) $(srcdir)/build-aux/xml2nroff $< > $@.tmp \
 	  -I $(srcdir) \
+	  -I $(OVS_MANDIR) \
 	  --version=$(VERSION) \
 	  PKIDIR='$(PKIDIR)' \
 	  LOGDIR='$(LOGDIR)' \
@@ -435,7 +437,7 @@ CLEANFILES += flake8-check
 
 include $(srcdir)/manpages.mk
 $(srcdir)/manpages.mk: $(MAN_ROOTS) build-aux/sodepends.py python/build/soutil.py
-	@PYTHONPATH=$$PYTHONPATH$(psep)$(srcdir)/python $(PYTHON) $(srcdir)/build-aux/sodepends.py -I. -I$(srcdir) -I$(srcdir)/ovs $(MAN_ROOTS) >$(@F).tmp
+	@PYTHONPATH=$$PYTHONPATH$(psep)$(srcdir)/python $(PYTHON) $(srcdir)/build-aux/sodepends.py -I. -I$(srcdir) -I$(OVS_MANDIR) $(MAN_ROOTS) >$(@F).tmp
 	@if cmp -s $(@F).tmp $@; then \
 	  touch $@; \
 	  rm -f $(@F).tmp; \
