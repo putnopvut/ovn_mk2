@@ -11,6 +11,7 @@ SUBDIRS = ovs
 
 OVS_SRCDIR=@ovs_srcdir@
 OVS_LIBDIR=@ovs_libdir@
+OVSDB_LIBDIR=@ovsdb_libdir@
 
 AM_CPPFLAGS = $(SSL_CFLAGS)
 AM_LDFLAGS = $(SSL_LDFLAGS)

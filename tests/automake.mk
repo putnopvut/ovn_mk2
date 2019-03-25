@@ -356,7 +356,7 @@ $(srcdir)/package.m4: $(top_srcdir)/configure.ac
 noinst_PROGRAMS += tests/test-ovsdb
 tests_test_ovsdb_SOURCES = tests/test-ovsdb.c
 nodist_tests_test_ovsdb_SOURCES = tests/idltest.c tests/idltest.h
-tests_test_ovsdb_LDADD = ovs/ovsdb/libovsdb.la $(OVS_LIBDIR)/libopenvswitch.la
+tests_test_ovsdb_LDADD = $(OVSDB_LIBDIR)/libovsdb.la $(OVS_LIBDIR)/libopenvswitch.la
 
 noinst_PROGRAMS += tests/test-lib
 tests_test_lib_SOURCES = \
